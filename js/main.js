@@ -110,7 +110,7 @@ function updateField(now) {
       if (fromRing < 20) pushAway(dot, ripple.x, ripple.y, ringRadius + 20, 3 * (1 - age / RIPPLE_LIFE));
     }
 
-    // Spring home, with friction so it settles
+    // X Spring home, with friction so it settles
     dot.vx = (dot.vx + (dot.homeX - dot.x) * 0.06) * 0.82;
     dot.vy = (dot.vy + (dot.homeY - dot.y) * 0.06) * 0.82;
     dot.x += dot.vx;
