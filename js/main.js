@@ -1,28 +1,21 @@
-// =========================================================
-// Austin Franklin :: main.js
-//
-// One PixiJS canvas sits behind the page and draws two things:
-//   1. a field of dots that the pointer pushes and clicks ripple through
-//   2. a generative image inside every project tile
-//
-// Structure:
-//   setup -> colours -> input -> dot field -> motifs -> frame loop
-// =========================================================
+// The PixiJS canvas is behind the page and draw two things. 
+// The first thing it draws is a field of dots that mouse pointer pushes through and when clicked ripples through. 
+// The second thing is that a generative image is drawn inside every project tile. 
 
 
-// ---------- Setup ----------
+// Under sets up the PixiJS. 
 
 const app = new PIXI.Application();
 await app.init({
   resizeTo: window,
-  backgroundAlpha: 0,           // transparent, the page colour shows through
+  backgroundAlpha: 0,           // It's transpaarent so the colour of the page shows through. 
   antialias: true,
   resolution: Math.min(window.devicePixelRatio || 1, 2),
   autoDensity: true,
 });
 document.getElementById("stage").appendChild(app.canvas);
 
-// Two layers: drawn in this order, so tiles cover the dots
+// There are two layers draw so that the dots are covered by the tiles. 
 const fieldLayer = new PIXI.Graphics();
 const artLayer = new PIXI.Graphics();
 app.stage.addChild(fieldLayer, artLayer);
@@ -30,8 +23,7 @@ app.stage.addChild(fieldLayer, artLayer);
 const reduceMotion = matchMedia("(prefers-reduced-motion: reduce)").matches;
 
 
-// ---------- Colours ----------
-// Read from the CSS variables so the canvas follows light and dark mode.
+// Under it reads from the CSS variables so it can recreate the colors. 
 
 const colours = {};
 
@@ -43,13 +35,12 @@ function readColours() {
 }
 
 readColours();
-matchMedia("(prefers-color-scheme: dark)").addEventListener("change", readColours);
 
 
-// ---------- Input ----------
+// Under is the code for the input. 
 
 const pointer = { x: -9999, y: -9999 };
-const ripples = [];   // every click adds one: { x, y, born }
+const ripples = [];   // On every click it adds one "x, y and born". 
 
 window.addEventListener("pointermove", (e) => {
   pointer.x = e.clientX;
@@ -60,7 +51,7 @@ window.addEventListener("pointerdown", (e) => {
   ripples.push({ x: e.clientX, y: e.clientY, born: performance.now() });
 });
 
-// Each tile keeps a hover value that eases between 0 and 1
+// All of the titles have a hover value that eases between the numbers of 0 and 1. 
 const tiles = [...document.querySelectorAll(".tile")].map((el) => {
   const tile = {
     box: el.querySelector(".art"),
@@ -73,15 +64,13 @@ const tiles = [...document.querySelectorAll(".tile")].map((el) => {
   return tile;
 });
 
-
-// ---------- Dot field ----------
-// Every dot has a home position and a current position.
-// Forces push it away; a spring pulls it home again.
+// The dots in the canvas have a current and home position. 
+// With a force it is pushed away. But with a springs it is pulled home. 
 
 const SPACING = 28;
 const PUSH_RADIUS = 150;
-const RIPPLE_SPEED = 500;     // pixels per second
-const RIPPLE_LIFE = 2000;     // milliseconds
+const RIPPLE_SPEED = 500;     // The speed is in pixels per second. 
+const RIPPLE_LIFE = 2000;     // The time measaurement is in milliseconds.
 
 let dots = [];
 
@@ -94,7 +83,7 @@ function buildField() {
   }
 }
 
-// Push a dot away from a point, stronger when closer
+// Under pushes a dot away from a points and it is stronger the closer it is to the mouse pointer.  
 function pushAway(dot, fromX, fromY, radius, strength) {
   const dx = dot.x - fromX;
   const dy = dot.y - fromY;
@@ -107,13 +96,13 @@ function pushAway(dot, fromX, fromY, radius, strength) {
 }
 
 function updateField(now) {
-  // Forget ripples that have faded out
+  // The ripples that have faded out are forgotten. 
   while (ripples.length && now - ripples[0].born > RIPPLE_LIFE) ripples.shift();
 
   for (const dot of dots) {
     pushAway(dot, pointer.x, pointer.y, PUSH_RADIUS, 1.2);
 
-    // A ripple is a ring that grows; only dots near the ring get pushed
+    // There is a ring that is a ripple that grows. The dota that near the ring get pushed. 
     for (const ripple of ripples) {
       const age = now - ripple.born;
       const ringRadius = (age / 1000) * RIPPLE_SPEED;

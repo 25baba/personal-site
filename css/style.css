@@ -1,43 +1,28 @@
-/* =========================================================
-   Austin Franklin :: style.css
-   1. Colours and sizes
-   2. Base
-   3. Header
-   4. Intro
-   5. Work grid
-   6. About
-   7. Footer
-   ========================================================= */
+/* 
+   1. The sizes and colours. 
+   2. The section for body styling. 
+   3. The styling for the header. 
+   4. The styling for the intro section. 
+   5. The grid for the work section. 
+   6. The styling for the about section. 
+   7. The styling for the footer. 
+*/
 
 
-/* ---------- 1. Colours and sizes ----------
-   One ink, one paper, one accent: the page reads like a printed score.
-   main.js reads these same variables, so the canvas always matches. */
+/* Under the page is read like it's a printed score. The main.js file also reads the same variables. Which means the canvas always matches each other. It also controls the color and sizes. */
 :root {
-  color-scheme: light;
-  --paper: #ffffff;
-  --ink: #111214;
-  --muted: #6b6f73;
-  --accent: #2b44d6;
+  color-scheme: red;
+  --paper: #ff0000;
+  --ink: #FFFFFF;
+  --muted: #000000;
+  --accent: #00FF00;
   --tile: #f1f2f0;
 
   --edge: clamp(1rem, 4vw, 3rem);
   --gap: clamp(1rem, 2.5vw, 2rem);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    color-scheme: dark;
-    --paper: #101113;
-    --ink: #eceeea;
-    --muted: #9a9ea2;
-    --accent: #8a98ff;
-    --tile: #1a1c1f;
-  }
-}
-
-
-/* ---------- 2. Base ---------- */
+/* Under is the styling for the body and in certain sections the text changes color to green in certain parts. */
 *, *::before, *::after { box-sizing: border-box; }
 
 body {
@@ -53,7 +38,7 @@ a { color: inherit; text-underline-offset: 0.2em; }
 a:hover { color: var(--accent); }
 :focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
 
-/* The canvas is fixed behind the page and lets clicks through */
+/* Under the canvas is fixed behind the page with the help of z-index. */
 #stage {
   position: fixed;
   inset: 0;
@@ -68,7 +53,7 @@ a:hover { color: var(--accent); }
 }
 
 
-/* ---------- 3. Header ---------- */
+/* Under is the styling for the header. */
 .top {
   display: flex;
   justify-content: space-between;
@@ -89,7 +74,7 @@ a:hover { color: var(--accent); }
 main { padding: 0 var(--edge); }
 
 
-/* ---------- 4. Intro ---------- */
+/* Under is the styling for the intro section. */
 .intro {
   max-width: 40rem;
   padding: clamp(2rem, 10vh, 6rem) 0;
@@ -97,7 +82,7 @@ main { padding: 0 var(--edge); }
   line-height: 1.4;
 }
 
-/* The name is already in the logo; the h1 stays for screen readers */
+/* The logo class already includes the name. The h1 is there only for screen readers.*/
 .intro h1 {
   position: absolute;
   width: 1px;
@@ -114,7 +99,7 @@ main { padding: 0 var(--edge); }
 }
 
 
-/* ---------- 5. Work grid ---------- */
+/* Under is the grid for the work section */
 .grid {
   list-style: none;
   margin: 0;
@@ -124,7 +109,7 @@ main { padding: 0 var(--edge); }
   gap: calc(var(--gap) * 1.5) var(--gap);
 }
 
-/* Empty box: Pixi paints the background and the motif inside it */
+/* Pixi paints both the motif and the background. It is an empty box. */
 .art { aspect-ratio: 4 / 3; }
 
 .tile h2 {
@@ -142,7 +127,7 @@ main { padding: 0 var(--edge); }
 .tile:hover h2 { color: var(--accent); }
 
 
-/* ---------- 6. About ---------- */
+/* Under is the styling for the about section. */
 .about { padding: clamp(4rem, 12vh, 8rem) 0 3rem; }
 
 .about > h2 {
@@ -151,25 +136,7 @@ main { padding: 0 var(--edge); }
   margin: 0 0 2rem;
 }
 
-.cols {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(min(100%, 22rem), 1fr));
-  gap: var(--gap) calc(var(--gap) * 2);
-  max-width: 64rem;
-}
-
-.cols h3 {
-  font-size: 1rem;
-  font-weight: 400;
-  color: var(--muted);
-  margin: 0 0 0.6rem;
-}
-
-.cols h3:not(:first-child) { margin-top: 2rem; }
-.cols p { margin: 0 0 1em; max-width: 34rem; }
-
-
-/* ---------- 7. Footer ---------- */
+/* Under is the styling for the footer. */
 .bottom {
   display: flex;
   justify-content: space-between;
