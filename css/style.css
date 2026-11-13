@@ -11,11 +11,11 @@
 
 /* Under the page is read like it's a printed score. The main.js file also reads the same variables. Which means the canvas always matches each other. It also controls the color and sizes. */
 :root {
-  color-scheme: red;
-  --paper: #ff0000;
+  color-scheme: linear-gradient(to right, #FF0000 50%, #00FF00 50%);
+  --paper: linear-gradient(to right, #FF0000 50%, #00FF00 50%);
   --ink: #FFFFFF;
   --muted: #000000;
-  --accent: #00FF00;
+  --accent: #FFFF00;
   --tile: #f1f2f0;
 
   --edge: clamp(1rem, 4vw, 3rem);
