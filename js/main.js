@@ -139,6 +139,8 @@ window.addEventListener("resize", buildField);
 
 // It draws one function per function. It means they all take the same argument. 
 
+// All the generated images in the data-motif won't be visible because they have been replaced with actual images.
+
 // It's randomly generated but saved in a seed. It's so the scatter looks the same on every visit. 
 function seededRandom(seed) {
   return () => {
@@ -152,7 +154,7 @@ const scatterPoints = Array.from({ length: 48 }, () => ({ x: random(), y: random
 
 const motifs = {
 
-   // Bloom: petals that open on hover
+   // When hovered over the petals open. 
   bloom(g, x, y, w, h, t, hover) {
     const cx = x + w / 2, cy = y + h / 2;
     const petals = 14;
@@ -173,7 +175,7 @@ const motifs = {
     g.stroke({ width: 1.25, color: colours.ink });
   },
 
-  // Four Idols: four figures built from stacked bars; hover makes them stand still
+  // The four figures that are made from the stacked bars. Hovering over them makes them stop still in their place. 
   idols(g, x, y, w, h, t, hover) {
     const columns = 4, rows = 12;
     const columnWidth = (w * 0.8) / columns;
@@ -213,7 +215,7 @@ const motifs = {
     g.fill(colours.ink);
   },
 
-  // Bounded: cells that grow and shrink inside a fixed frame
+  // These are cells that shrink and grow. They are inside a frame that's fixed. 
   grid(g, x, y, w, h, t, hover) {
     const columns = 8, rows = 6;
     const cellW = (w * 0.8) / columns, cellH = (h * 0.8) / rows;
